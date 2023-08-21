@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage {
 
-    private static final String URL = "https://account.asus.com/loginform.aspx?skey=1d2642cc6fac4bc1bf32ae7df66ece56";
+    private static final String URL = "/;
     private static final SelenideElement EMAIL_FIELD = $("#txtMail");
     private static final SelenideElement PASSWORD_FIELD = $("#txtPassword1");
     private static final SelenideElement SUBMIT_BUTTON = $("[type='submit']");
