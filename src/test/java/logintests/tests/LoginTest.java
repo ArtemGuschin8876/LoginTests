@@ -32,16 +32,22 @@ public class LoginTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/test_data.csv", numLinesToSkip = 1)
     public void loginTestNegative(String email, String password) {
+        Configuration.timeout = 11000;
         loginPage.openPage();
         if (loginPage.cookieMessageExists()) {
             loginPage.closeCookiesMessage();
         }
         loginPage.setUserEmailAndPassword(email, password);
+
+        if (loginPage.noAccountUserMessageExists()) {
+            loginPage.checkNoAccountField();
+        }
         loginPage.clickButtonSubmit();
-        loginPage.checkErrorEmail
-                (constants.ERROR_TEXT_COLOR,
-                        constants.MESSAGE_ERROR_EMAIL,
-                        constants.ERROR_BORDER_COLOR);
+
+        loginPage.checkErrorEmail(constants.ERROR_TEXT_COLOR,
+                constants.MESSAGE_ERROR_EMAIL,
+                constants.ERROR_BORDER_COLOR);
+
         loginPage.checkErrorPassword
                 (constants.ERROR_TEXT_COLOR,
                         constants.MESSAGE_ERROR_PASSWORD,
